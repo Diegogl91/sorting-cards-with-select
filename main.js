@@ -1,3 +1,5 @@
-let numeros = [A, 2, 3, 4, 5, 6, 7, 8, 9, J, Q, K];
+let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
 let pintas = ['corazon', 'diamante', 'picas', 'trebol'];
 
+let carta = document.getElementById('carta');
+carta.style.background = "#FFFFFF";
