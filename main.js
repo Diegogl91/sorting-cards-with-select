@@ -2,8 +2,6 @@ let cartas = document.getElementById('cartas');
 let contenedorLog = document.getElementById('contenedorLog')
 let grupodeCartas = [];
 let cartasGeneradas = [];
-
-
 function CrearCarta(elemPadre, cardData) {
     let numeroDeCartas = document.getElementsByClassName('carta').length;
     let carta = document.createElement('div');
@@ -43,7 +41,6 @@ function CrearCarta(elemPadre, cardData) {
     pintadown.style.color = cardData.pinta.color;
     carta.appendChild(pintadown);
 }
-
 function generarValores(num) {
     let array = [];
     for (let i = 0; i < num; i++) {
@@ -52,7 +49,6 @@ function generarValores(num) {
     }
     return array;
 }
-
 function obtenerPintayColor() {
     let varpinta = Math.floor(Math.random() * 4) + 1;
     let pinta = "";
@@ -72,7 +68,6 @@ function obtenerPintayColor() {
     }
     return pinta;
 }
-
 function obtenerNumero() {
     let num = Math.floor(Math.random() * 12) + 1;
     let numeros = num;
@@ -92,7 +87,6 @@ function obtenerNumero() {
     }
     return { numero: num, valor: numeros };
 }
-
 function repartirCartas() {
     let numDeCartas = document.getElementById('nCartas').value;
     cartasGeneradas = generarValores(numDeCartas);
@@ -102,20 +96,16 @@ function repartirCartas() {
         grupodeCartas.push(CrearCarta(cartas, cartasGeneradas[i]))
     }
 }
-
 window.onload = function () {
     let draw = document.getElementById('btncartas');
     draw.addEventListener('click', function () {
         repartirCartas()
     })
-
     let sort = document.getElementById('btnOrdenar')
     sort.addEventListener('click', function () {
         bubbleSort(cartasGeneradas)
     })
 }
-
-
 const bubbleSort = (arr = []) => {
     let wall = arr.length - 1;
     let track = 0;
