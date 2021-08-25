@@ -1,3 +1,14 @@
 body{
     background-color: #26AA65;
 }
+.iteracion, .arregloDeCartas{
+    display: inline-block;
+    margin:10px
+}
+.iteracion{
+    font-size: 40px;
+    font-style:italic ;
+    bottom: 20px;
+    left: 10px;
+    position: relative;
+}
