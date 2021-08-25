@@ -1,5 +1,5 @@
 let cartas = document.getElementById('cartas');
-
+let contenedorLog = document.getElementById('contenedorLog')
 let grupodeCartas = [];
 
 
@@ -95,8 +95,8 @@ function repartirCartas(){
     for (let i=0;i<numDeCartas;i++){
         grupodeCartas.push(CrearCarta())
     }
-    console.log(grupodeCartas)
-    console.log(bubbleSort(grupodeCartas))
+    // console.log(grupodeCartas)
+    // console.log(bubbleSort(grupodeCartas))
 }
 
 window.onload = function(){
@@ -104,6 +104,11 @@ window.onload = function(){
     draw.addEventListener('click', function(){
         repartirCartas()
     })
+
+    let sort = document.getElementById('btnOrdenar')
+    sort.addEventListener('click',function(){
+        bubbleSort(grupodeCartas)
+    } )
 }
 
 
@@ -116,6 +121,17 @@ const bubbleSort = (arr = []) => {
                 let aux = arr[index + 1];
                 arr[index + 1] = arr[index];
                 arr[index] = aux;
+                let nuevoContenedor = document.createElement("div");
+                contenedorLog.appendChild(nuevoContenedor);
+                nuevoContenedor.style.height = "80px";
+                nuevoContenedor.style.marginBottom = "10px";
+                let contenedorNumero = document.createElement("div");
+                contenedorNumero.style.float = "left";
+                contenedorNumero.style.width = "20px";
+                nuevoContenedor.appendChild(contenedorNumero);
+                let numeroIteracion = document.createElement("span");
+                numeroIteracion.innerHTML = index;
+                contenedorNumero.appendChild(numeroIteracion);
                 
             }
             index++;
