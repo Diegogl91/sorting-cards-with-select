@@ -1,8 +1,5 @@
 let cartas = document.getElementById('cartas');
 
-
-let numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13];
-let pintas = ['corazon', 'diamante', 'picas', 'trebol'];
 let grupodeCartas = [];
 
 
@@ -34,7 +31,8 @@ function CrearCarta() {
     valor.style.textAlign = "center";
     valor.style.paddingTop = "5px";
     valor.style.fontSize = "30px";
-    valor.innerHTML = obtenerNumero();
+   let valorSeleccionado = obtenerNumero();
+   valor.innerHTML = valorSeleccionado.valor;
     carta.appendChild(valor);
     let pintadown = document.createElement('div')
     pintadown.className = "pintainferior";
@@ -46,6 +44,7 @@ function CrearCarta() {
     pintadown.innerHTML = pintaSeleccionada.forma;
     pintadown.style.color = pintaSeleccionada.color;
     carta.appendChild(pintadown)
+    return {valor:valorSeleccionado, pinta:pintaSeleccionada};
 
 }
 
@@ -71,21 +70,22 @@ function obtenerPintayColor() {
 
 function obtenerNumero(){
     let num = Math.floor(Math.random() * 12)+1;
+    let numeros = num;
     switch (num) {
         case 1:
-            num = "A";
+            numeros = "A";
             break;
         case 10:
-            num = "J"
+            numeros = "J"
             break;
         case 11:
-            num = "Q";
+            numeros = "Q";
             break;
         case 12:
-            num = "K";
+            numeros = "K";
             break;
     }
-    return num;
+    return {numero: num, valor:numeros};
 }
 
 function repartirCartas(){
@@ -93,8 +93,10 @@ function repartirCartas(){
     let cartas = document.getElementById(`cartas`)
     cartas.innerHTML = "";
     for (let i=0;i<numDeCartas;i++){
-        CrearCarta()
+        grupodeCartas.push(CrearCarta())
     }
+    console.log(grupodeCartas)
+    console.log(bubbleSort(grupodeCartas))
 }
 
 window.onload = function(){
@@ -103,6 +105,26 @@ window.onload = function(){
         repartirCartas()
     })
 }
+
+
+const bubbleSort = (arr = []) => {
+    let wall = arr.length - 1;
+    while( wall >= 0){
+        let index = 0;
+        while(index < wall){
+            if(arr[index].valor.numero > arr[index + 1].valor.numero){
+                let aux = arr[index + 1];
+                arr[index + 1] = arr[index];
+                arr[index] = aux;
+                
+            }
+            index++;
+        }
+        wall--;
+    }
+    return arr;
+}
+
 
 
 
