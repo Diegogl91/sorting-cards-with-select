@@ -44,7 +44,7 @@ function CrearCarta(elemPadre, cardData) {
 function generarValores(num) {
     let array = [];
     for (let i = 0; i < num; i++) {
-        let cartaGenerada = { valor: obtenerNumero(), pinta: obtenerPintayColor()}
+        let cartaGenerada = { valor: obtenerNumero(), pinta: obtenerPintayColor() }
         array.push(cartaGenerada);
     }
     return array;
@@ -90,7 +90,7 @@ function obtenerNumero() {
 function repartirCartas() {
     let numDeCartas = document.getElementById('nCartas').value;
     cartasGeneradas = generarValores(numDeCartas);
-    contenedorLog.innerHTML="";
+    contenedorLog.innerHTML = "";
     cartas.innerHTML = "";
     for (let i = 0; i < numDeCartas; i++) {
         grupodeCartas.push(CrearCarta(cartas, cartasGeneradas[i]))
@@ -104,6 +104,10 @@ window.onload = function () {
     let sort = document.getElementById('btnOrdenar')
     sort.addEventListener('click', function () {
         bubbleSort(cartasGeneradas)
+    })
+    let seleccion = document.getElementById('btnSelector')
+    seleccion.addEventListener('click', function () {
+        selectSort(cartasGeneradas)
     })
 }
 const bubbleSort = (arr = []) => {
@@ -127,7 +131,7 @@ const bubbleSort = (arr = []) => {
                     CrearCarta(nuevoContenedor, cartasGeneradas[i]);
                 }
                 iteracion.appendChild(nuevoContenedor);
-                contenedorLog.appendChild(iteracion); 
+                contenedorLog.appendChild(iteracion);
                 track++;
             }
             index++;
@@ -137,5 +141,24 @@ const bubbleSort = (arr = []) => {
     return arr;
 }
 
-
+const selectSort = (arr = []) => {
+    let min = 0;
+    let track = 0;
+    while (min < arr.length) {
+        for (let i = min + 1; i < arr.length; i++) {
+            if (arr[min].valor.numero > arr[i].valor.numero) {
+                let iteracion2 = document.createElement('div');
+                let tracker2 = document.createElement('div');
+                tracker2.innerHTML = track;
+                tracke2r.className = `iteracion`;
+                iteracion.appendChild(tracker2);
+                let aux = arr[min];
+                arr[min] = arr[i];
+                arr[i] = aux;
+            } track++
+        }
+        min++;
+    }
+    return arr;
+};
 
