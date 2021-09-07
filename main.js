@@ -101,44 +101,11 @@ window.onload = function () {
     draw.addEventListener('click', function () {
         repartirCartas()
     })
-    let sort = document.getElementById('btnOrdenar')
-    sort.addEventListener('click', function () {
-        bubbleSort(cartasGeneradas)
-    })
+    
     let seleccion = document.getElementById('btnSelector')
     seleccion.addEventListener('click', function () {
         selectSort(cartasGeneradas)
     })
-}
-const bubbleSort = (arr = []) => {
-    let wall = arr.length - 1;
-    let track = 0;
-    while (wall >= 0) {
-        let index = 0;
-        while (index < wall) {
-            if (arr[index].valor.numero > arr[index + 1].valor.numero) {
-                let iteracion = document.createElement('div');
-                let tracker = document.createElement('div');
-                tracker.innerHTML = track;
-                tracker.className = `iteracion`;
-                iteracion.appendChild(tracker);
-                let aux = arr[index + 1];
-                arr[index + 1] = arr[index];
-                arr[index] = aux;
-                let nuevoContenedor = document.createElement("div");
-                nuevoContenedor.className = `arregloDeCartas`
-                for (let i = 0; i < arr.length; i++) {
-                    CrearCarta(nuevoContenedor, cartasGeneradas[i]);
-                }
-                iteracion.appendChild(nuevoContenedor);
-                contenedorLog.appendChild(iteracion);
-                track++;
-            }
-            index++;
-        }
-        wall--;
-    }
-    return arr;
 }
 
 const selectSort = (arr = []) => {
@@ -147,17 +114,25 @@ const selectSort = (arr = []) => {
     while (min < arr.length) {
         for (let i = min + 1; i < arr.length; i++) {
             if (arr[min].valor.numero > arr[i].valor.numero) {
-                let iteracion2 = document.createElement('div');
-                let tracker2 = document.createElement('div');
-                tracker2.innerHTML = track;
-                tracke2r.className = `iteracion`;
-                iteracion.appendChild(tracker2);
+                let iteracion = document.createElement('div');
+                let tracker = document.createElement('div');
+                tracker.innerHTML = track;
+                tracker.className = `iteracion`;
+                iteracion.appendChild(tracker);
                 let aux = arr[min];
                 arr[min] = arr[i];
                 arr[i] = aux;
-            } track++
+                let nuevoContenedor = document.createElement("div");
+                nuevoContenedor.className = `arregloDeCartas`
+                for (let i = 0; i < arr.length; i++) {
+                    CrearCarta(nuevoContenedor, cartasGeneradas[i])
+                };
+                iteracion.appendChild(nuevoContenedor);
+                contenedorLog.appendChild(iteracion);
+                track++
+            }
         }
-        min++;
+        min++
     }
     return arr;
 };
